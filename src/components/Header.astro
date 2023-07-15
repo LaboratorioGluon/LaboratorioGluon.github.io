@@ -1,0 +1,22 @@
+---
+import Social from "./HeaderItems/Social.astro";
+import Link from "./HeaderItems/Link.vue";
+import { Icon } from 'astro-icon'
+
+const Links = [
+    ["mdi:home", "Home", "#"],
+    ["","Proyectos", "#"],
+];
+
+---
+
+<header class="sticky bg-slate-900 flex flew-row p-2 w-full top-0 items-center z-50">
+    <div class="flex justify-center basis-1/4 text-stale font-extrabold text-white">Lab.Gluon Projects</div>
+    <div class="flex justify-center justify-center basis-1/2 items-center">
+        {Links.map (lname => 
+                        <Link Link={lname[2]}>{lname[1]}</Link>
+                    )
+        }
+    </div>
+    <div class="flex justify-center basis-1/4 "><Social /></div>
+</header>

@@ -1,0 +1,86 @@
+---
+layout: ../layouts/baseProjectLayout_1.astro
+title: Minisumo de Naranja
+
+---
+
+import CodeTab from "../components/CodeTab.vue";
+import CodeBlock from "../components/CodeBlock.vue";
+export const components = {pre: CodeBlock}
+
+El **Minisumo Naranja** es un robot pequeño y autónomo que participa en competiciones de sumo. 
+El robot tiene un peso máximo de 500 gramos y una base de 10x10 centímetros. 
+El Minisumo Naranja se controla con un software que le permite detectar obstáculos, calcular la distancia y la velocidad de otros robots, y tomar decisiones sobre cómo mover sus motores.
+
+> Lo mejor del Minisumo de Naranja es que está Bit-animado con Bit-amina C.
+
+Las competiciones de minisumo se llevan a cabo en una arena circular de 1 metro de diámetro. El objetivo del juego es empujar al robot oponente fuera de la arena. Los robots minisumo suelen estar equipados con sensores ultrasónicos para detectar la proximidad de otros robots. También pueden estar equipados con sensores táctiles para detectar los bordes de la arena.
+
+Las competiciones de minisumo son muy populares en todo el mundo. Hay competiciones locales, regionales, nacionales e internacionales. Los robots minisumo son una forma divertida y desafiante de aprender sobre robótica y programación.
+
+Aquí hay algunos de los beneficios de construir y competir con un robot minisumo:
+
+- Aprender sobre robótica y programación
+- Desarrollar habilidades de resolución de problemas
+- Experimentar con diferentes sensores y actuadores
+- Competir contra otros robots y personas
+- Disfrutar de la construcción y la programación de robots
+
+
+
+### Header 3 
+
+Y aquí un cacho de codigo...
+<CodeTab fileNames="test.cpp|test.h" language="C++" client:visible>
+
+```cpp
+#define MAC_DST 123
+
+void app_main(void)
+{
+    uint8_t mac[6]= {MAC_DST};
+    Init();
+
+    
+    //isFreshStart = (esp_reset_reason() == ESP_RST_POWERON);
+    esp_reset_reason_t resetReason;
+    resetReason = esp_reset_reason();
+    if(resetReason == ESP_RST_POWERON)
+    {
+        gpio_set_level(LED_GREEN_PIN, 1);
+    }
+    else if(resetReason == ESP_RST_BROWNOUT)
+    {
+        gpio_set_level(LED_GREEN_PIN, 1);
+        gpio_set_level(LED_RED_PIN, 1);
+    }
+```
+
+```cpp
+#ifndef __ADC_H__
+#define __ADC_H__
+
+//#include <driver/adc.h>
+#include <esp_adc/adc_continuous.h>
+
+class AdcReader{
+public:
+    AdcReader(uint32_t _adcNumber,adc_channel_t _channelAdc);
+
+    void Init();
+    uint32_t ReadValue(uint32_t samples = 5);
+
+    static bool calibrateAdc();
+
+private:
+
+    adc_channel_t channelAdc;
+    uint32_t adcNumber;
+
+};
+
+#endif //__ADC_H__
+```
+</CodeTab>
+
+

@@ -1,15 +1,34 @@
 ---
+
+import "../styles/baseStyles.scss"
+
+import Header from "../components/Header.astro"
+import Footer from "../components/Footer.vue";
+
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="flex flex-col bg-gray-200 min-h-screen">
+		<Header/>
+		<nav class="relative shadow-lg text-center bg-gradient-to-r from-amber-100 to-purple-300 p-1 z-40">💥 Bienvenido a la web recopilación de proyectos de Lab.Gluón‼ 💥</nav>
+		<div class="relative flex flex-1 divide-x">
+				<aside class="bg-white inline-block w-1/6 ">Menu</aside>
+				<main  class="bg-white inline-block w-4/6 ">
+					<div class="p-10 shadow-inner">
+					</div>
+				</main>
+				<aside class="grow bg-green-100 inline-block ">OtherSide</aside>
+		</div>
+		<Footer></Footer>
 	</body>
+	
 </html>
