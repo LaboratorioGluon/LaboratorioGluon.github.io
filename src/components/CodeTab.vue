@@ -2,7 +2,7 @@
     <div class="mx-[10ex]">
         <div ref="buttonDiv">
             <div class="relative ml-3 cursor-pointer inline-block p-2 px-4  rounded-t-lg border-t-2 border-l-2 border-r-2 border-gluOrange-500 font-mono z-40"
-                :class="visible==index?'bg-gluOrange-500 drop-shadow-2xl ':'bg-gluOrange-50'"
+                :class="visible==index?'bg-gluOrange-400 font-bold':'bg-gluOrange-50'"
                 v-for="(file, index) in (props.fileNames.split('|'))" 
                 @click="change(index)">
                 {{ file }}
