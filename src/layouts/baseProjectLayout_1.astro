@@ -4,7 +4,7 @@ import "../styles/baseStyles.scss"
 
 import Header from "../components/Header.astro"
 import Footer from "../components/Footer.vue";
-
+import TOC from "../components/Toc.vue";
 
 
 const {frontmatter } = Astro.props || Astro.props.frontmatter;
@@ -24,7 +24,7 @@ const {frontmatter } = Astro.props || Astro.props.frontmatter;
 		</nav>
 		<div class="relative flex flex-1 divide-x">
 				<aside class="bg-white inline-block w-1/6 ">Menu</aside>
-				<main  class="bg-white inline-block w-4/6 ">
+				<main class="bg-white inline-block w-4/6 shadow-lg">
 					<div class="p-20 shadow-inner">
 						<h1 class="text-center">{frontmatter.title}</h1>
 						<div id="blog-post-content">
@@ -32,7 +32,11 @@ const {frontmatter } = Astro.props || Astro.props.frontmatter;
 						</div>
 					</div>
 				</main>
-				<aside class="grow inline-block ">OtherSide</aside>
+				
+				<div class="w-1/6 p-4 ">
+					<TOC client:load/>
+				</div>
+
 		</div>
 		<Footer>
 			<div class="mb-4 border-b border-gray-200 dark:border-gray-700">

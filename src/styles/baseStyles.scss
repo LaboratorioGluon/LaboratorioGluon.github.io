@@ -7,7 +7,13 @@ p{
     @apply text-justify #{!important};
 }
 
+html
+{
+  scroll-padding-top: 5em; /* height of sticky header */
+}
+
 @layer base{
+
     h1{
         
         @apply text-5xl font-extrabold text-slate-700 underline decoration-gluOrange w-full underline-offset-8 #{!important};
@@ -53,10 +59,10 @@ p{
     }
 
     #blog-post-content blockquote{
-        @apply ml-8 p-4 my-4 border-l-4 border-gluOrange-300 bg-gluOrange-50 dark:border-gray-500 dark:bg-gray-800 #{!important};
+        @apply mx-8 p-4 my-4 border-l-4 border-gluOrange-300 bg-gluOrange-50 dark:border-gray-500 dark:bg-gray-800 #{!important};
     }
 
-    #blog-post-content p{
+    #blog-post-content>p{
         padding-bottom:1em !important;
     }
 }
