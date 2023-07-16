@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-[10ex]">
+    <div class="mx-[10ex] mb-10">
         <div ref="buttonDiv">
             <div class="relative ml-3 cursor-pointer inline-block p-2 px-4  rounded-t-lg border-t-2 border-l-2 border-r-2 border-gluOrange-500 font-mono z-40"
                 :class="visible==index?'bg-gluOrange-400 font-bold':'bg-gluOrange-50'"

@@ -5,6 +5,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://laboratoriogluon.github.io',
   integrations: [vue(), tailwind(), mdx()],
   markdown: {
     shikiConfig: {
