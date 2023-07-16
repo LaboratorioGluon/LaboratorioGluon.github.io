@@ -12,7 +12,12 @@ html
   scroll-padding-top: 5em; /* height of sticky header */
 }
 
+
+
 @layer base{
+    .toc-highlight{
+        color:red !important;
+    }
 
     h1{
         
