@@ -64,7 +64,7 @@ html
     }
 
     #blog-post-content blockquote{
-        @apply mx-8 p-4 my-4 border-l-4 border-gluOrange-300 bg-gluOrange-50 dark:border-gray-500 dark:bg-gray-800 #{!important};
+        @apply mx-8 p-4 my-4 border-l-4 border-gluOrange-300 bg-gluOrange-50  #{!important};
     }
 
     #blog-post-content>p{

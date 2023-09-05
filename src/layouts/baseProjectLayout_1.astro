@@ -4,7 +4,7 @@ import "../styles/baseStyles.scss"
 
 import Header from "../components/Header.astro"
 import Footer from "../components/Footer.vue";
-
+import Menu from "../components/ItemsMenu.astro";
 import RightSide from "../components/RightSide.astro";
 
 const {frontmatter } = Astro.props || Astro.props.frontmatter;
@@ -23,7 +23,7 @@ const {frontmatter } = Astro.props || Astro.props.frontmatter;
 			💥 Bienvenido a la web recopilación de proyectos de Lab.Gluón‼ 💥
 		</nav>
 		<div class="relative flex flex-1 divide-x">
-				<aside class="bg-slate-50 inline-block w-1/6 ">Menu</aside>
+				<aside class="bg-slate-50 inline-block w-1/6  p-4"><Menu></Menu></aside>
 				<main class="bg-white inline-block w-4/6 shadow-lg">
 					<div class="p-20 shadow-inner">
 						<h1 class="text-center">{frontmatter.title}</h1>

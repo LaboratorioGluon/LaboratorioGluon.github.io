@@ -1,0 +1,85 @@
+---
+import {Icon} from 'astro-icon';
+
+const allProjects = await Astro.glob("../pages/proyectos/*.mdx");
+---
+
+<div class="flex font-bold items-center" id="project-title" menu-title target="project-list">
+    <div class="w-4 inline-block mr-2 hidden"><Icon pack="teenyicons" name="folder-solid"/></div>
+    <div class="w-4 inline-block mr-2 "><Icon pack="teenyicons" name="folder-outline"/></div>
+    Robots/
+</div>
+<ul class="mx-2" id="project-list">
+    {
+        allProjects.map((project) => (
+            <li>
+                <a href={project.url}>- {project.frontmatter.title}</a>
+            </li>
+        ))
+    }
+</ul>
+<div class="flex font-bold items-center" id="electronica-title" menu-title target="electronica-list">
+    <div class="w-4 inline-block mr-2 hidden"><Icon pack="teenyicons" name="folder-solid"/></div>
+    <div class="w-4 inline-block mr-2 "><Icon pack="teenyicons" name="folder-outline"/></div>
+    Electrónica/
+</div>
+<ul class="mx-2" id="electronica-list">
+    {
+        allProjects.map((project) => (
+            <li>
+                <a href={project.url}>- {project.frontmatter.title}</a>
+            </li>
+        ))
+    }
+</ul>
+
+<script>
+    function hideSubmenu(ulToCollapse) {
+        console.log("Hey!");
+    }
+
+    const titlemap = {
+        "project-title": "project-list",
+        "project-title1": "project-list1",
+        "project-title2": "project-list2",
+    };
+
+    const project = document.querySelectorAll("#project-title")[0];
+    const titles = document.querySelectorAll("[menu-title]");
+
+    titles.forEach((title) => {
+        title.addEventListener("click", (e: Event) => {
+            
+            var iconoCerrado = e.target.getElementsByTagName("div")[0]
+            var iconoAbierto = e.target.getElementsByTagName("div")[1]
+
+            var target = document.querySelector(
+                "#" + e.target.getAttribute("target"),
+            );
+            if (target.classList.contains("hidden")) {
+                target.classList.remove("hidden");
+                iconoAbierto.classList.remove("hidden");
+                iconoCerrado.classList.add("hidden");
+            } else {
+                target.classList.add("hidden");
+                iconoAbierto.classList.add("hidden");
+                iconoCerrado.classList.remove("hidden");
+            }
+        });
+    });
+
+    /*project.addEventListener('click', (e) => {
+    var targetList = titlemap[e.target.id];
+
+    var target = document.querySelector('#'+targetList);
+    if ( target.classList.contains('hidden'))
+    {
+        target.classList.remove('hidden');
+    }
+    else
+    {
+        target.classList.add('hidden');
+    }
+    console.log(target);
+});*/
+</script>
