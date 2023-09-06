@@ -1,0 +1,25 @@
+---
+import {Icon} from 'astro-icon';
+const {name,  srcFolder } = Astro.props;
+const allProjects = await Astro.glob("../../pages/**/*.mdx");
+const items = allProjects.filter( item => 
+{
+    return item.url.includes(srcFolder+"/")
+});
+
+const ulname= "project-list-" + name;
+---
+<div class="flex font-bold items-center" id="project-title" menu-title target={ulname}>
+    <div class="w-4 inline-block mr-2 hidden"><Icon pack="teenyicons" name="folder-solid"/></div>
+    <div class="w-4 inline-block mr-2 "><Icon pack="teenyicons" name="folder-outline"/></div>
+    <div class="border-b-2 border-dotted border-slate-400">{name}/</div>
+</div>
+<ul class="mx-2" id={ulname}>
+    {
+        items.map((project) => (
+            <li>
+                <a href={project.url}>- {project.frontmatter.title}</a>
+            </li>
+        ))
+    }
+</ul>

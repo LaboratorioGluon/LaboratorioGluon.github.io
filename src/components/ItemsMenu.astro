@@ -1,13 +1,16 @@
 ---
 import {Icon} from 'astro-icon';
+import Folder from './Explorer/ExplorerFolder.astro';
 
-const allProjects = await Astro.glob("../pages/proyectos/*.mdx");
+const allProjects = await Astro.glob("../pages/robots/*.mdx");
 ---
 
-<div class="flex font-bold items-center" id="project-title" menu-title target="project-list">
+<Folder name="Robots" srcFolder="robots"></Folder>
+<Folder name="Electrónica" srcFolder="electronica"></Folder>
+<!--<div class="flex font-bold items-center" id="project-title" menu-title target="project-list">
     <div class="w-4 inline-block mr-2 hidden"><Icon pack="teenyicons" name="folder-solid"/></div>
     <div class="w-4 inline-block mr-2 "><Icon pack="teenyicons" name="folder-outline"/></div>
-    Robots/
+    <div class="border-b-2 border-dotted border-slate-400">Robots/</div>
 </div>
 <ul class="mx-2" id="project-list">
     {
@@ -32,7 +35,7 @@ const allProjects = await Astro.glob("../pages/proyectos/*.mdx");
         ))
     }
 </ul>
-
+-->
 <script>
     function hideSubmenu(ulToCollapse) {
         console.log("Hey!");
@@ -50,11 +53,11 @@ const allProjects = await Astro.glob("../pages/proyectos/*.mdx");
     titles.forEach((title) => {
         title.addEventListener("click", (e: Event) => {
             
-            var iconoCerrado = e.target.getElementsByTagName("div")[0]
-            var iconoAbierto = e.target.getElementsByTagName("div")[1]
+            var iconoCerrado = title.getElementsByTagName("div")[0]
+            var iconoAbierto = title.getElementsByTagName("div")[1]
 
             var target = document.querySelector(
-                "#" + e.target.getAttribute("target"),
+                "#" + title.getAttribute("target"),
             );
             if (target.classList.contains("hidden")) {
                 target.classList.remove("hidden");
