@@ -1,7 +1,7 @@
 ---
 import {Icon} from 'astro-icon';
 const {name,  srcFolder } = Astro.props;
-const allProjects = await Astro.glob("../../pages/**/*.mdx");
+const allProjects = import.meta.glob("../../pages/**/*.mdx");
 const items = allProjects.filter( item => 
 {
     return item.url.includes(srcFolder+"/")

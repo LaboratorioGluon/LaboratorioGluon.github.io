@@ -10,12 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^1.0.0",
-    "@astrojs/tailwind": "^5.0.0",
-    "@astrojs/vue": "^3.0.0",
+    "@astrojs/mdx": "^4.2.1",
+    "@astrojs/tailwind": "^6.0.1",
+    "@astrojs/vue": "^5.0.7",
     "@headlessui/vue": "^1.7.14",
     "@heroicons/vue": "^2.0.18",
-    "astro": "^3.0.8",
+    "astro": "^5.5.4",
     "astro-icon": "^0.8.1",
     "expressive-code": "^0.18.0",
     "sass": "^1.63.6",

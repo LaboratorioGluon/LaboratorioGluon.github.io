@@ -1,12 +1,12 @@
 ---
 import {Icon} from 'astro-icon';
-import Folder from './Explorer/ExplorerFolder.astro';
+//import Folder from './Explorer/ExplorerFolder.astro';
 
-const allProjects = await Astro.glob("../pages/robots/*.mdx");
+const allProjects =  import.meta.glob("../pages/robots/*.mdx");
 ---
 
-<Folder name="Robots" srcFolder="robots"></Folder>
-<Folder name="Electrónica" srcFolder="electronica"></Folder>
+<!-- <Folder name="Robots" srcFolder="robots"></Folder>
+<Folder name="Electrónica" srcFolder="electronica"></Folder> -->
 <!--<div class="flex font-bold items-center" id="project-title" menu-title target="project-list">
     <div class="w-4 inline-block mr-2 hidden"><Icon pack="teenyicons" name="folder-solid"/></div>
     <div class="w-4 inline-block mr-2 "><Icon pack="teenyicons" name="folder-outline"/></div>
