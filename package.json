@@ -9,7 +9,7 @@
     "start": "node dist/server/entry.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "postbuild": "pagefind --site dist/client"
+    "postbuild": "pagefind --site dist"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.0",
