@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "icon": {
+      "type": "simple-icons",
+      "name": "github"
+    },
+    "text": "GitHub",
+    "link": "https://github.com/laboratoriogluon",
+    "color": "#eeeeee"
+  },
+  {
+    "id": 2,
+    "icon": {
+      "type": "simple-icons",
+      "name": "twitch"
+    },
+    "text": "Twitch",
+    "link": "https://www.twitch.tv/labgluon",
+    "color": "#6441a5"
+  },
+  {
+    "id": 3,
+    "icon": {
+      "type": "lucide",
+      "name": "youtube"
+    },
+    "text": "Youtube",
+    "link": "https://www.youtube.com/laboratoriogluon",
+    "color": "#FF0000"
+  }
+  ,
+  {
+    "id": 4,
+    "icon": {
+      "type": "lucide",
+      "name": "twitter"
+    },
+    "text": "Twitter",
+    "link": "https://www.twitter.com/LabGluon",
+    "color": "#26a7de"
+  },
+  {
+    "id": 5,
+    "icon": {
+      "type": "simple-icons",
+      "name": "bluesky"
+    },
+    "text": "BlueSky",
+    "link": "https://bsky.app/profile/labgluon.bsky.social",
+    "color": "#208bfe"
+  }
+]

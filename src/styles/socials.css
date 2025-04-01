@@ -1,0 +1,18 @@
+.link-youtube {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre el ícono y el texto */
+    color: #FF0000; /* Rojo de YouTube */
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.link-youtube::before {
+content: "▶"; /* Puedes cambiarlo por un emoji o un icono SVG */
+font-size: 1.2em;
+color: #FF0000;
+}
+
+.link-youtube:hover {
+text-decoration: underline;
+}

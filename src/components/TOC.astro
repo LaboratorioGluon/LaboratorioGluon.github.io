@@ -1,0 +1,22 @@
+---
+import Card from './Card.astro';
+const { ...props } = Astro.props;
+
+const headings = props.headings;
+const title = props.title;
+
+---
+
+<Card class="toc-card">
+    <h2 class="no-mt">Table of contents</h2>
+    <ol>
+      <li class="toc-li">
+        <a href={`#_top`} class="active">{title}</a>
+      </li>
+      {headings.map((heading, i) => (
+        <li class="toc-li" data-depth={heading.depth}>
+          <a href={`#${heading.slug}`}>{heading.text}</a>
+        </li>
+      ))}
+    </ol>
+  </Card>

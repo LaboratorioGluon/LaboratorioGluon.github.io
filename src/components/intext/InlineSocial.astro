@@ -1,0 +1,53 @@
+---
+import Icon from "../Icon.astro";
+
+const { ...props } = Astro.props;
+
+const socialToIconMap = [
+    {
+        name: "github",
+        icon: "github",
+        provider: "simple-icons",
+        color: "#eeeeee"
+    },
+    {
+        name:"twitch",
+        icon: "twitch",
+        provider: "simple-icons",
+        color: "#6441a5"
+    },
+    {
+        name: "twitter",
+        icon: "twitter",
+        provider: "simple-icons",
+        color: "#1DA1F2"
+    },
+    {
+        name: "linkedin",
+        icon: "linkedin",
+        provider: "simple-icons",
+        color: "#0077B5"
+    },
+    {
+        name: "instagram",
+        icon: "instagram",
+        provider: "simple-icons",
+        color: "#C13584"
+    },
+    {
+        name: "mastodon",
+        icon: "mastodon",
+        provider: "simple-icons",
+        color: "#6364FF"
+    }
+];
+
+const social = props.name
+const iconName = socialToIconMap.find((item) => item.name === props.social)?.icon;
+const iconType = socialToIconMap.find((item) => item.name === props.social)?.provider;
+const iconColor = socialToIconMap.find((item) => item.name === props.social)?.color;
+console.log(iconName);
+---
+
+<Icon type={iconType} name={iconName} width={24} height={16} style="color:red"/><span><slot></slot></span>
+

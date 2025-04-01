@@ -1,0 +1,310 @@
+---
+title: "Getting Started with Spectre"
+description: "Find out how to configure Spectre."
+image: "../assets/spectre.png"
+createdAt: 12-29-2024
+draft: false
+tags:
+  - guide
+---
+
+Thanks for going with Spectre as your theme of choice! Let's get you set up. You can create a new Astro project with this theme by running:
+
+```bash
+# npm
+npm create astro@latest -- --template louisescher/spectre
+
+# pnpm
+pnpm create astro@latest --template louisescher/spectre
+
+# yarn
+yarn create astro --template louisescher/spectre
+```
+
+First, a small introduction to the project structure:
+
+```
+.
+├── public/
+│   └── img/
+├── src/
+│   ├── assets/
+│   │   └── pfp.png
+│   └── content/
+│       ├── assets/
+│       ├── other/
+│       ├── posts/
+│       ├── projects/
+│       ├── info.json
+│       ├── socials.json
+│       ├── tags.json
+│       └── work.json
+├── .env
+└── astro.config.mjs
+```
+
+There are other files and directories in the repository as well, but we're going to ignore them in this guide since they're not relevant.
+
+## Configuring the Theme
+
+First, head to the `src/assets/` directory. You'll find a pfp.png file there. Replace it with your own profile picture!
+
+Next, open the `astro.config.mjs` file and change the `site` parameter so that it matches your own site:
+
+```ts ins={11} title="astro.config.ts"
+import { defineConfig } from 'astro/config';
+
+import expressiveCode from 'astro-expressive-code';
+import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
+import pagefind from 'astro-pagefind';
+import spectre from './package/integration';
+
+// https://astro.build/config
+export default defineConfig({
+  site: 'https://your-site.tld',
+  // ...
+});
+```
+
+After that, you can configure the site title and other details for the pages in the integration options:
+
+```ts {"        Your name:":6-7} {"        Titles and descriptions for non-content pages:":8-21} title="astro.config.ts"
+export default defineConfig({
+  // ...
+  integrations: [
+    // ...
+    spectre({
+
+      name: 'Spectre',
+
+      openGraph: {
+        home: {
+          title: 'Spectre',
+          description: 'A minimalistic theme for Astro.'
+        },
+        blog: {
+          title: 'Blog',
+          description: 'News and guides for Spectre.'
+        },
+        projects: {
+          title: 'Projects'
+        }
+      }
+    })
+  ]
+});
+```
+
+Optionally, you can also add the `themeColor` and `twitterHandle` parameters next to the `name` parameter in the integration options.
+The theme color defaults to `#8c5cf5`. The Twitter handle doesn't have a default value, and the relevant meta tags will be omitted if it's not provided.
+
+### Comments
+
+This theme has comments powered by [giscus](https://giscus.app). If you want to use them, first configure your repository on their website. Then, add the `giscus` option and configure it based on the script tag you get from giscus:
+
+```ts {"        Add the info from giscus here:":7-18} title="astro.config.ts"
+export default defineConfig({
+  // ...
+  integrations: [
+    // ...
+    spectre({
+      // ...
+
+      giscus: {
+        repository: '...',
+        repositoryId: '...',
+        category: '...',
+        categoryId: '...',
+        mapping: '...',
+        strict: true | false,
+        reactionsEnabled: true | false,
+        emitMetadata: true | false,
+        lang: '...',
+      }
+    })
+  ]
+});
+```
+
+If you want to modify the giscus colors, you can do so in the `styles/giscus.css` file. If you do so, make sure to provide the theme as `https://your-site.tld/styles/giscus`. 
+
+Alternatively, you can change the `giscus.theme` option to one of the provided options by giscus.
+
+## Authoring Content
+
+Now, let's move on to the `src/content/` directory. You'll find a few JSON files there, along with a few directories. The difference? The JSON files are used for quick infos, social links and other information that doesn't need the full MDX capabilities. The directories are for the actual content, like blog posts and projects.
+
+You'll notice there's a `other/` directory too, which only contains one file: `about.mdx`. This is where you can put your about page content that still needs the full MDX capabilities, but doesn't fit into the other categories.
+
+Let's go down the list of JSON files and see what you can put in them:
+
+### Info
+
+The `info.json` file contains the quick info you can see below your profile picture and name on the main page. It will appear in the same order you put it into this file! An item in the `info.json` file looks like this:
+
+```jsonc title="info.json"
+{
+  "id": 1, // The ID. Has to be unique for Astro's content collections to work.
+  "icon": {
+    "type": "lucide", // The icon lib, either "lucide" or "simple-icons".
+    "name": "cake" // The name of the icon.
+  },
+  "text": "1 year old" // The text to display.
+}
+```
+
+Spectre supports both [Lucide](https://lucide.dev) and [Simple Icons](https://simpleicons.org).
+
+### Socials
+
+The `socials.json` file is similar to the `info.json` file in terms of structure and is used for the social links in the second card on the home page.
+
+```jsonc title="socials.json"
+{
+  "id": 1, // The ID, has to be unique.
+  "icon": {
+    "type": "lucide", // The icon lib, either "lucide" or "simple-icons".
+    "name": "github" // The name of the icon.
+  },
+  "text": "GitHub", // The text in the link
+  "link": "https://github.com/louisescher/spectre" // The actual destination of the link
+}
+```
+
+### Tags
+
+The `tags.json` file holds all tags for your blog posts. Whenever you want to create a new tag, add it here!
+
+```jsonc title="tags.json"
+{
+  "id": "guide" // The ID and name of the tag. Has to be unique.
+}
+```
+
+### Work
+
+Last but not least in terms of JSON files, `work.json`. This is where you put all your work experience! The following example contains all parts in the correct order, meaning that `duration` will come first when actually displayed on the page:
+
+```jsonc title="work.json"
+{
+  "id": 1, // The ID, has to be unique.
+  "duration": "2024 - present", // Duration of the employment
+  "company": "Astro Community", // The Employer
+  "title": "Astro Theme", // The title of the position
+  "description": "Existing as an Astro theme for anyone to use." // A small description about your experience
+}
+```
+
+### Posts
+
+Let's move on to the *real* content. The `posts/` directory is home to all your blog posts, written in MDX. To create a new post, simply create a new file! The filename will be used as the slug for the page.
+
+Each post can provide the following information in the frontmatter:
+
+```mdx
+---
+title: "Getting Started with Spectre" # The title of the post
+description: "Find out how to configure Spectre." # The description of the post
+image: "../assets/spectre.png" # The image to be used as the OG image, referenced with a relative path.
+createdAt: 12-29-2024 # Creation date
+updatedAt: 12-30-2024 # Optional, will be used in the meta tags to tell Google and co. that a post was updated
+draft: false # Optional, can be used to hide a post completely
+tags: # The tags, referencing the ones defined earlier in the `tags.json` file
+  - guide
+---
+```
+
+After the frontmatter, you can write your post in MDX! If you're not familiar with MDX, you can find a guide [here](https://mdxjs.com/getting-started).
+
+> As for the images, it is recommended to place them in `src/content/assets`. That way, you can separate them from normal images.
+
+### Projects
+
+The `projects/` directory is similar to the `posts/` directory, but for projects. There's a few differences in the frontmatter:
+
+```mdx
+---
+title: Spectre # The title of the project
+date: 12-29-2024 # Date of publication
+description: Spectre is a terminal-inspired theme for Astro, built using Astro and TypeScript. # Description of the project
+image: ../assets/spectre.png # The image to be used as the OG image, referenced with a relative path
+info: # A TOML-like list of information about the project
+  - text: GitHub # Text for this info
+    link: https://github.com/louisescher/spectre # Optional if you want to link to somewhere
+    icon:
+      type: lucide # Icon library, either "lucide" or "simple-icons"
+      name: github # The name of the icon
+---
+```
+
+### Other
+
+The `src/content/other/` directory is home to all MDX content which does not need it's own category. For example, you'll find an `about.mdx` file in here, which is responsible for the "About me" section on the homepage!
+
+## Deploying
+
+Spectre uses the [`node`](https://docs.astro.build/en/guides/integrations-guide/node/) adapter by default. If you want to deploy to Netlify or Vercel, you need their respective adapters:
+- [`@astrojs/netlify`](https://docs.astro.build/en/guides/integrations-guide/netlify/)
+- [`@astrojs/vercel`](https://docs.astro.build/en/guides/integrations-guide/vercel/)
+
+When deploying to GitHub Pages, make sure to remove the adapter from the `astro.config.ts` file altogether:
+
+```ts del={4-6} title="astro.config.ts"
+// ...
+export default defineConfig({
+  // ...
+  adapter: node({
+    mode: 'standalone'
+  })
+});
+```
+
+After doing so, you can follow the [official guide](https://docs.astro.build/en/guides/deploy/github/) to deploy your site.
+
+When not using an adapter, make sure to set `export const prerender` to `true` in `src/pages/styles/giscus.ts` or to remove the file altogether if you don't provide a custom giscus theme yourself.
+Additionally, you need to update the `postbuild` script in your `package.json`:
+
+```jsonc title="package.json" ins={4} del={3}
+{
+  "scripts": {
+    "postbuild": "pagefind --site dist/client",
+    "postbuild": "pagefind --site dist",
+  },
+}
+
+```
+
+## Modifying the theme
+
+As with all themes, you might wish to modify it. In terms of content, you should know where you can do that! If you want to modify the primary color for example, you can do so in the `src/styles/globals.css` file:
+
+| Variable | Description | Default |
+| --- | --- | --- |
+| `--primary` | The primary color of the page. | `#8c5cf5` |
+| `--primary-rgb` | RGB version of the primary color. | `140, 92, 245` |
+| `--primary-light` | Used for links. | `#a277ff` |
+| `--primary-lightest` | Used for links. | `#c2a8fd` |
+
+### Changing the code block colors
+
+Code snippets declared in `.md` and `.mdx` files are powered by [Expressive Code](https://expressive-code.com). By default, Spectre uses a variation of GitHub's dark theme with custom background colors. 
+
+If you want to change the colors of the code snippets (syntax highlighting, background color, etc.) you can provide your desired theme in the `astro.config.ts` file as such:
+
+```ts ins={8} del={1,7} title="astro.config.ts"
+import { spectreDark } from './src/ec-theme';
+// ...
+export default defineConfig({
+  // ...
+  integrations: [
+    expressiveCode({
+      themes: [spectreDark],
+      themes: ['catppuccin-mocha'],
+    }),
+    // ... 
+  ],
+  // ...
+});
+```
+You can find a list of available themes [on Expressive Code's website](https://expressive-code.com/guides/themes/).
