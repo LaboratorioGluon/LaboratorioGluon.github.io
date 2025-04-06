@@ -16,6 +16,14 @@ const path = Astro.url.pathname;
     </li>
     <li class="nav-separator">/</li>
     <li>
+      <a href="/faq" class:list={{ active: path === '/faq' }}>F.A.Q.</a>
+      <ul>
+        <li> <a href="/faq/equipamiento/basico" class:list={{ active: path === '/faq/equipamiento' }}>Equipamiento</a></li>
+        <li> <a href="/projects" class:list={{ active: path === '/faq' }}>Taller</a></li>
+      </ul>
+    </li>
+    <li class="nav-separator">/</li>
+    <li>
       <input id="search" type="text" placeholder="Search (Ctrl+K)" />
       <div id="search-results"></div>
     </li>
@@ -320,6 +328,27 @@ const path = Astro.url.pathname;
       font-size: 0.875em;
     }
   }
+
+  nav ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      padding: 5px;
+      left: 0;
+      background: #444;
+      overflow: hidden;
+     }
+
+    nav ul li:hover ul {
+      display: block;
+      padding:5px;
+      
+    }
+
+    nav ul li ul li {
+      display: block;
+      margin:10px;
+    }
 </style>
 <style is:global>
   #search-results a {

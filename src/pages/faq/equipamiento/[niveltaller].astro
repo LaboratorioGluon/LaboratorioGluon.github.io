@@ -1,0 +1,145 @@
+---
+import '../../../styles/article.css';
+import '../../../styles/article-list.css';
+import '../../../styles/globals.css';
+import Icon from "../../../components/Icon.astro";
+import TOC from "../../../components/TOC.astro";
+
+import Layout from "../../../layouts/Layout.astro";
+import Card from "../../../components/Card.astro";
+
+import type { GetStaticPaths } from "astro";
+import { render } from "astro:content";
+
+const { title } = Astro.props;
+
+export const getStaticPaths = (async () =>{
+    //const equipamientos = await Astro.glob("../../../content/other/*.astro");
+    const equipamientos = import.meta.glob("../../../content/other/*.mdx");
+
+    const paths = Object.entries(equipamientos).map(([path, loader]) => {
+        console.log(loader);
+        const slug = path.split("/").pop()?.replace(".mdx", "");
+
+        return { 
+            params: { niveltaller: slug } ,
+            props: { loader }
+        };
+    });
+    return paths;
+}) satisfies GetStaticPaths;
+
+const {loader} = Astro.props;
+const mod = await loader();
+
+const Content = mod.default;
+const frontmatter = mod.frontmatter;
+const headings = mod.getHeadings();
+
+
+---
+
+<Layout
+    title="Equipamiento"
+    description="Equipamiento de la comunidad de Spectre"
+>
+    <div class="layout-grid-left" slot="left">
+        <Card>
+            <div class="header-container">
+				<Icon type="lucide" name="square-library" width={24} height={24} class='glow-icon' style="--primary:#ffb845"/>
+                <h2> Elige tu nivel</h2>
+			</div>
+            <div class="content-container">
+            <a href="nivelbasico" class="post-container easy">
+                <div class="content-container" >
+                    <div class="post-header">
+                        <h3> 👶 Nivel básico</h3>
+                    </div>
+                    <span>Lo recomendado para empezar</span>
+                </div>
+            </a>
+            <a href="" class="post-container medium">
+                <div class="content-container ">
+                    <div class="post-header">
+                        <h3> 🤓 Nivel medio</h3>
+                    </div>
+                    <span
+                        >Cuando ya tienes conocimientos y quiere hacer proyectos
+                        más avanzados</span
+                    >
+                </div>
+            </a>
+            <a href="" class="post-container hard">
+                <div class="content-container ">
+                    <div class="post-header">
+                        <h3> 🧙 Nivel Avanzado</h3>
+                    </div>
+                    <span>Ya eres experto, ¿Qué haces mirando esto?</span
+                    >
+                </div>
+            </a>
+        </div>
+    </Card>
+    <Card class="toc-card">
+        <TOC headings = {headings} title={frontmatter.title}></TOC>
+    </Card>
+    </div>
+    
+</div>
+    <div class="layout-grid-right" slot="right">
+        <Card id="equipamiento">
+            <div class="header-container">
+                <Icon
+                    type="lucide"
+                    name="rss"
+                    width={24}
+                    height={24}
+                    class="glow-icon"
+                    style="--primary:#ffb845"
+                />
+                <h2>{frontmatter.title}</h2>
+            </div>
+            <Content />
+    </Card>
+    </div>
+    
+</Layout>
+
+<style>
+
+    .post-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        border: 1px solid #353535;
+        color: #ffffff;
+        text-decoration: none;
+        background-color: var(--box-color,#252525);
+        transition: background-color .15s ease, border .15s ease;
+        }
+    
+    .post-container.easy {
+        background-color: rgba(52, 92, 52, 0.125);
+        border: 1px solid green;
+        }
+    .post-container.medium {
+        background-color: rgba(92, 85, 52, 0.125);
+        border: 1px solid orange;
+        }
+
+    .post-container.hard{
+        background-color: rgba(110, 39, 39, 0.125);
+        border: 1px solid red;
+        
+    }
+
+    .post-container:hover, .post-container:focus-visible {
+        background-color: rgba(var(--box-color), .125);
+        border: 1px solid var(--primary);
+        color: white;
+        text-decoration: none;
+    }
+</style>
+
+<script src="../../../scripts/toc.ts" />

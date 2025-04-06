@@ -169,3 +169,66 @@ main {
   flex-direction: column;
   gap: 1rem;
 }
+
+/*
+table{
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #1e1e1e;
+  border: 1px solid #353535;
+}
+
+table th, table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #353535;
+}
+  */
+
+  /* Fondo oscuro para la tabla */
+#equipamiento table {
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-collapse: collapse;
+  background-color: #1d1e22; /* Fondo oscuro de la tabla */
+  color: #e4e7ed; /* Texto claro */
+  border-radius: 8px; /* Bordes redondeados */
+  overflow: hidden;
+}
+
+/* Encabezados */
+#equipamiento th {
+  background-color: #23252a; /* Fondo más oscuro para los encabezados */
+  /*color: #ffb845; /* Color dorado para los encabezados */
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* Celdas de la tabla */
+#equipamiento td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #444; /* Línea divisoria sutil */
+  text-align: left;
+}
+
+/* Fila alternada para mayor contraste */
+#equipamiento tr:nth-child(even) {
+  background-color: #1d1e22; /* Fondo alternado más oscuro */
+}
+
+/* Fila al pasar el cursor */
+#equipamiento tr:hover {
+  background-color: #4a5058; /* Resalta cuando pasas el cursor por encima */
+}
+
+/* Bordes de la tabla */
+#equipamiento table, th, td {
+  border: 1px solid #444; /* Bordes discretos en color gris oscuro */
+}
+
